@@ -18,6 +18,7 @@ namespace FoodDelivery
         {
             var host = CreateHostBuilder(args).Build();
 
+            //Auto Update-Database
             using(var serviceScope = host.Services.CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
