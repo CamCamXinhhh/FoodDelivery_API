@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using FoodDelivery.Database.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,22 @@ namespace FoodDelivery.Database
 {
     public class DataContext : IdentityDbContext
     {
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            //Product - Category
+            builder.Entity<Product>()
+                .HasOne(p => p.Category)
+                .WithMany(c => c.Products);
         }
     }
 }

@@ -17,5 +17,19 @@ namespace FoodDelivery.Constants
             public const string Register = Base + "/identity/register";
             public const string Refresh = Base + "/identity/refresh";
         }
+
+        public static class Product
+        {
+            public const string GetAll = Base + "/products";
+            public const string Get = Base + "/products/{productId}";
+            public const string Create = Base + "/products";
+        }
+
+        public static class Category
+        {
+            public const string GetAll = Base + "/categories";
+            public const string Get = Base + "/categories/{categoryId}";
+            public const string Create = Base + "/categories";
+        }
     }
 }

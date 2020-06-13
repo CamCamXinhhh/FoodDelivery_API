@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using FoodDelivery.Database;
 using FoodDelivery.Domain;
+using FoodDelivery.Mappings;
 using FoodDelivery.Services.Implementations;
 using FoodDelivery.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -46,7 +48,30 @@ namespace FoodDelivery
 
             services.AddSwaggerGen(s =>
             {
+                var security = new Dictionary<string, IEnumerable<string>>
+                {
+                    {"Bearer", new string[0] }
+                };
                 s.SwaggerDoc("v1", new OpenApiInfo { Title = "Food Delivery Api", Version = "v1" });
+                s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Description = "JWT Authorization header using the Bearer scheme.",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+                
+                s.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {new OpenApiSecurityScheme{Reference = new OpenApiReference
+
+                    {
+                        Id = "Bearer",
+                        Type = ReferenceType.SecurityScheme
+                    }
+                    }, new List<string>()
+                    }
+                });
             });
 
             services.AddMvc();
@@ -86,8 +111,18 @@ namespace FoodDelivery
             );
             #endregion Authentication
 
+            #region AutoMapper
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+            #endregion AutoMapper
+
             #region Services 
             services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<IProductService, ProductService>();
             #endregion Services
         }
 
