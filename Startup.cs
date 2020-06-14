@@ -74,11 +74,7 @@ namespace FoodDelivery
                     }, new List<string>()
                     }
                 });
-                #region XML Comments
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.XML";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                s.IncludeXmlComments(xmlPath);
-                #endregion XML Comments
+                
             });
 
             services.AddMvc();
