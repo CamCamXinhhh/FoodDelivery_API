@@ -14,8 +14,15 @@ namespace FoodDelivery.Mappings
     {
         public MappingProfile()
         {
+            #region Product
             CreateMap<CreateProductRequest, Product>();
-            CreateMap<Product, GetProductByIdResponse>();
+            CreateMap<Product, GetProductResponse>();
+            #endregion
+
+            #region Category
+            CreateMap<Category, GetCategoryResponse>();
+
+            #endregion
         }
     }
 }

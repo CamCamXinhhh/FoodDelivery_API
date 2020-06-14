@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -72,6 +74,11 @@ namespace FoodDelivery
                     }, new List<string>()
                     }
                 });
+                #region XML Comments
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.XML";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                s.IncludeXmlComments(xmlPath);
+                #endregion XML Comments
             });
 
             services.AddMvc();

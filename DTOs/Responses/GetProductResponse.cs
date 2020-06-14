@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FoodDelivery.DTOs.Responses
 {
-    public class GetProductByIdResponse
+    public class GetProductResponse
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }

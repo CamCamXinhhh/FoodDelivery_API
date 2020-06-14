@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\PhucTri\Desktop\PRM Project\FoodDelivery\FoodDelivery.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Migrations\20200611024842_Create_ProductCategory_Table.cs" />
     <Compile Remove="Migrations\20200611024842_Create_ProductCategory_Table.Designer.cs" />

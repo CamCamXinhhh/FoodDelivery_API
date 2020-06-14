@@ -30,12 +30,13 @@ namespace FoodDelivery.Services.Implementations
         public async Task<Product> GetProductByIdAsync(int productId)
         {
             return await _dataContext.Products
+                 .AsNoTracking()
                  .SingleOrDefaultAsync(p => p.ProductId == productId);
         }
 
         public async Task<List<Product>> GetProductsAsync()
         {
-            return await _dataContext.Products.ToListAsync();
+            return await _dataContext.Products.AsNoTracking().ToListAsync();
         }
     }
 }

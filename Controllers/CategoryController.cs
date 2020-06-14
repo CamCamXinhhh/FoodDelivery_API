@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using FoodDelivery.Constants;
+using FoodDelivery.DTOs.Responses;
 using FoodDelivery.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,10 @@ namespace FoodDelivery.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Get all categories
+        /// </summary>
+        /// <returns></returns>
         [HttpGet(ApiRoutes.Category.GetAll)]
         public async Task<IActionResult> GetAll()
         {
@@ -30,15 +35,20 @@ namespace FoodDelivery.Controllers
             return Ok(categories);
         }
 
-        //[HttpGet(ApiRoutes.Category.Get)]
-        //public async Task<IActionResult> Get([FromRoute] int productId)
-        //{
-        //    var category = await _categoryService.GetCategoryByIdAsync(productId);
+        /// <summary>
+        /// Get a category by categoryId
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        [HttpGet(ApiRoutes.Category.Get)]
+        public async Task<IActionResult> Get([FromRoute] int categoryId)
+        {
+            var category = await _categoryService.GetCategoryByIdAsync(categoryId);
 
-        //    if (category == null)
-        //        return NotFound();
+            if (category == null)
+                return NotFound();
 
-        //    return 
-        //}
+            return Ok(_mapper.Map<GetCategoryResponse>(category));
+        }
     }
 }

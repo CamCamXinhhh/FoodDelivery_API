@@ -29,12 +29,13 @@ namespace FoodDelivery.Services.Implementations
 
         public async Task<List<Category>> GetCategoriesAsync()
         {
-            return await _dataContext.Categories.ToListAsync();
+            return await _dataContext.Categories.AsNoTracking().ToListAsync();
         }
 
         public async Task<Category> GetCategoryByIdAsync(int categoryId)
         {
             return await _dataContext.Categories
+                 .AsNoTracking()
                  .SingleOrDefaultAsync(c => c.CategoryId == categoryId);
         }
     }

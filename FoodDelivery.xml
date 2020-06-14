@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FoodDelivery</name>
+    </assembly>
+    <members>
+        <member name="M:FoodDelivery.Controllers.CategoryController.GetAll">
+            <summary>
+            Get all categories
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FoodDelivery.Controllers.CategoryController.Get(System.Int32)">
+            <summary>
+            Get a category by categoryId
+            </summary>
+            <param name="categoryId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FoodDelivery.Controllers.ProductController.GetAll">
+            <summary>
+            Get all products
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FoodDelivery.Controllers.ProductController.Get(System.Int32)">
+            <summary>
+            Get a product by productId
+            </summary>
+            <param name="productId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FoodDelivery.Controllers.ProductController.Create(FoodDelivery.DTOs.Requests.CreateProductRequest)">
+            <summary>
+            Create a product
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
