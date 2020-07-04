@@ -126,6 +126,7 @@ namespace FoodDelivery
             #region Services 
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
             #endregion Services
         }
 

@@ -21,7 +21,7 @@ namespace FoodDelivery.Mappings
 
             #region Category
             CreateMap<Category, GetCategoryResponse>();
-
+            CreateMap<CreateCategoryRequest, Category>();
             #endregion
         }
     }
