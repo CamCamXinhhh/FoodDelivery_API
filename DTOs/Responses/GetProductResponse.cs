@@ -15,5 +15,6 @@ namespace FoodDelivery.DTOs.Responses
         public double Price { get; set; }
         public string ProductImage { get; set; }
         public int TimeToMake { get; set; }
+        public int CategoryId { get; set; }
     }
 }

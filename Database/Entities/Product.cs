@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace FoodDelivery.Database.Entities
@@ -18,6 +19,7 @@ namespace FoodDelivery.Database.Entities
 
         //Relationship EF Core
         public int CategoryId { get; set; }
+        [JsonIgnore]
         public Category Category { get; set; }
     }
 }
