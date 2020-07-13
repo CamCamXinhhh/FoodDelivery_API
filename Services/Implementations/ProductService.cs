@@ -38,5 +38,13 @@ namespace FoodDelivery.Services.Implementations
         {
             return await _dataContext.Products.AsNoTracking().ToListAsync();
         }
+
+        public async Task<List<Product>> GetProductsByNameAsync(string productName)
+        {
+            return await _dataContext.Products
+                .AsNoTracking()
+                .Where(p => p.ProductName.Contains(productName))
+                .ToListAsync();
+        }
     }
 }

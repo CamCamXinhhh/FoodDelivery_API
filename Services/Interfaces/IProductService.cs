@@ -11,6 +11,7 @@ namespace FoodDelivery.Services.Interfaces
         Task<List<Product>> GetProductsAsync();
         Task<Product> GetProductByIdAsync(int productId);
         Task<bool> CreateProductAsync(Product product);
+        Task<List<Product>> GetProductsByNameAsync(string productName);
 
     }
 }

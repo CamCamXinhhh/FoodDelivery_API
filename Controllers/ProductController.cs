@@ -28,10 +28,7 @@ namespace FoodDelivery.Controllers
             _mapper = mapper;
         }
 
-        /// <summary>
-        /// Get all products
-        /// </summary>
-        /// <returns></returns>
+        
         [HttpGet(ApiRoutes.Product.GetAll)]
         public async Task<IActionResult> GetAll()
         {
@@ -39,11 +36,6 @@ namespace FoodDelivery.Controllers
             return Ok(products);
         }
 
-        /// <summary>
-        /// Get a product by productId
-        /// </summary>
-        /// <param name="productId"></param>
-        /// <returns></returns>
         [HttpGet(ApiRoutes.Product.Get)]
         public async Task<IActionResult> Get([FromRoute]int productId)
         {
@@ -55,11 +47,8 @@ namespace FoodDelivery.Controllers
             return Ok(_mapper.Map<GetProductResponse>(product));
         }
 
-        /// <summary>
-        /// Create a product
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        
+        
         [HttpPost(ApiRoutes.Product.Create)]
         public async Task<IActionResult> Create([FromBody]CreateProductRequest request)
         {
@@ -71,6 +60,13 @@ namespace FoodDelivery.Controllers
             var locationUri = baseUrl + "/" + ApiRoutes.Product.Get.Replace("{productId}", product.ProductId.ToString());
 
             return Created(locationUri, _mapper.Map<GetProductResponse>(product));
+        }
+
+        [HttpGet(ApiRoutes.Product.GetByName)]
+        public async Task<IActionResult> GetProductsByName([FromRoute]string productName)
+        {
+            var products = await _productService.GetProductsByNameAsync(productName);
+            return Ok(products);
         }
 
 

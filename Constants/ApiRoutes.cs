@@ -23,6 +23,7 @@ namespace FoodDelivery.Constants
             public const string GetAll = Base + "/products";
             public const string Get = Base + "/products/{productId}";
             public const string Create = Base + "/products";
+            public const string GetByName = Base + "/products/search/{productName}";
         }
 
         public static class Category
