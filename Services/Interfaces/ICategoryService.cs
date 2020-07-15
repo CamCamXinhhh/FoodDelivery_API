@@ -11,5 +11,6 @@ namespace FoodDelivery.Services.Interfaces
         Task<List<Category>> GetCategoriesAsync();
         Task<Category> GetCategoryByIdAsync(int categoryId);
         Task<bool> CreateCategoryAsync(Category category);
+        Task<List<Product>> GetAllProductsOfACategory(int categoryId);
     }
 }

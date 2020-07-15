@@ -27,6 +27,18 @@ namespace FoodDelivery.Services.Implementations
             return created > 0;
         }
 
+        public async Task<List<Product>> GetAllProductsOfACategory(int categoryId)
+        {
+            var category = await GetCategoryByIdAsync(categoryId);
+
+            if(category != null)
+            {
+                return category.Products;
+            }
+
+            return null;
+        }
+
         public async Task<List<Category>> GetCategoriesAsync()
         {
             return await _dataContext.Categories.AsNoTracking().ToListAsync();
@@ -35,7 +47,6 @@ namespace FoodDelivery.Services.Implementations
         public async Task<Category> GetCategoryByIdAsync(int categoryId)
         {
             return await _dataContext.Categories
-                 .AsNoTracking()
                  .SingleOrDefaultAsync(c => c.CategoryId == categoryId);
         }
     }

@@ -50,5 +50,15 @@ namespace FoodDelivery.Controllers
 
             return Ok(_mapper.Map<GetCategoryResponse>(category));
         }
+
+        [HttpGet(ApiRoutes.Category.GetListFoodOfACategory)]
+        public async Task<IActionResult> GetFoodsOfACategory([FromRoute]int categoryId)
+        {
+            var foodsOfACateogry = await _categoryService.GetAllProductsOfACategory(categoryId);
+
+            if (foodsOfACateogry == null)
+                return NotFound();
+            return Ok(foodsOfACateogry);
+        }
     }
 }

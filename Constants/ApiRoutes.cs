@@ -31,6 +31,7 @@ namespace FoodDelivery.Constants
             public const string GetAll = Base + "/categories";
             public const string Get = Base + "/categories/{categoryId}";
             public const string Create = Base + "/categories";
+            public const string GetListFoodOfACategory = Base + "/categories/{categoryId}/products";
         }
     }
 }
