@@ -41,6 +41,7 @@ namespace FoodDelivery.Services.Implementations
 
         public async Task<List<Product>> GetProductsByNameAsync(string productName)
         {
+            //Get list of products by name
             return await _dataContext.Products
                 .AsNoTracking()
                 .Where(p => p.ProductName.Contains(productName))
