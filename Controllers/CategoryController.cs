@@ -6,12 +6,14 @@ using AutoMapper;
 using FoodDelivery.Constants;
 using FoodDelivery.DTOs.Responses;
 using FoodDelivery.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodDelivery.Controllers
 {
     [ApiController]
+    [Authorize]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
