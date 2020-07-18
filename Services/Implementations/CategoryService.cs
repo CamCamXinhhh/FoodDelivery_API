@@ -29,9 +29,11 @@ namespace FoodDelivery.Services.Implementations
 
         public async Task<List<Product>> GetAllProductsOfACategory(int categoryId)
         {
-            var category = await GetCategoryByIdAsync(categoryId);
+            var category = await _dataContext.Categories
+                 .Include("Products")
+                 .SingleOrDefaultAsync(c => c.CategoryId == categoryId);
 
-            if(category != null)
+            if (category != null)
             {
                 return category.Products;
             }
