@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using FoodDelivery.Constants;
 using FoodDelivery.Database.Entities;
 using FoodDelivery.DTOs.Requests;
@@ -11,10 +7,11 @@ using FoodDelivery.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace FoodDelivery.Controllers
 {
-    
+
     [ApiController]
     [Authorize]    
     public class ProductController : ControllerBase

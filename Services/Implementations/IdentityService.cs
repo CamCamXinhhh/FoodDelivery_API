@@ -1,4 +1,5 @@
 ﻿using FoodDelivery.Database;
+using FoodDelivery.Database.Entities;
 using FoodDelivery.Domain;
 using FoodDelivery.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -15,12 +16,12 @@ namespace FoodDelivery.Services.Implementations
 {
     public class IdentityService : IIdentityService
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly JwtSettings _jwtSettings;
         private readonly DataContext _context;
 
         public IdentityService(
-            UserManager<IdentityUser> userManager,
+            UserManager<User> userManager,
             JwtSettings jwtSettings,
             DataContext context
             )
@@ -33,6 +34,7 @@ namespace FoodDelivery.Services.Implementations
         public async Task<AuthenticationResult> LoginAsync(string email, string password)
         {
             var user = await _userManager.FindByEmailAsync(email);
+            
             if (user == null)
                 return new AuthenticationResult()
                 {
@@ -65,7 +67,7 @@ namespace FoodDelivery.Services.Implementations
                 };
             }
 
-            var newUser = new IdentityUser()
+            var newUser = new User()
             {
                 Id = Guid.NewGuid().ToString(),
                 Email = email,
@@ -86,7 +88,7 @@ namespace FoodDelivery.Services.Implementations
             return await GenerateAuthenticationResultForUserAsync(newUser);
         }
 
-        private async Task<AuthenticationResult> GenerateAuthenticationResultForUserAsync(IdentityUser user)
+        private async Task<AuthenticationResult> GenerateAuthenticationResultForUserAsync(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 

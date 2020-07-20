@@ -23,6 +23,10 @@ namespace FoodDelivery.Mappings
             CreateMap<Category, GetCategoryResponse>();
             CreateMap<CreateCategoryRequest, Category>();
             #endregion
+
+            #region User
+            CreateMap<User, GetUserDetailResponse>();
+            #endregion
         }
     }
 }

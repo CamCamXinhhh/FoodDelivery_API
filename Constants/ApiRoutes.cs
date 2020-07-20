@@ -38,5 +38,10 @@ namespace FoodDelivery.Constants
         {
             public const string Get = Base + "/discounts/{discountCode}";
         }
+
+        public static class User
+        {
+            public const string Get = Base + "/users/{email}";
+        }
     }
 }

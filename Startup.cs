@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using FoodDelivery.Database;
+using FoodDelivery.Database.Entities;
 using FoodDelivery.Domain;
 using FoodDelivery.Mappings;
 using FoodDelivery.Services.Implementations;
@@ -44,7 +45,7 @@ namespace FoodDelivery
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentityCore<IdentityUser>()
+            services.AddIdentityCore<User>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<DataContext>();
 
@@ -128,6 +129,7 @@ namespace FoodDelivery
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IDiscountService, DiscountService>();
+            services.AddScoped<IUserService, UserService>();
             #endregion Services
         }
 
