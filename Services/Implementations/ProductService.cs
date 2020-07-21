@@ -1,5 +1,6 @@
 ﻿using FoodDelivery.Database;
 using FoodDelivery.Database.Entities;
+using FoodDelivery.DTOs.Responses;
 using FoodDelivery.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -39,13 +40,22 @@ namespace FoodDelivery.Services.Implementations
             return await _dataContext.Products.AsNoTracking().ToListAsync();
         }
 
-        public async Task<List<Product>> GetProductsByNameAsync(string productName)
+        public async Task<GetProductsByNameResponse> GetProductsByNameAsync(string productName)
         {
+
             //Get list of products by name
-            return await _dataContext.Products
+            var searchedProducts = await _dataContext.Products
                 .AsNoTracking()
                 .Where(p => p.ProductName.Contains(productName))
                 .ToListAsync();
+
+            var result = new GetProductsByNameResponse()
+            {
+                Foods = searchedProducts,
+                Count = searchedProducts.Count
+            };
+
+            return result;
         }
     }
 }

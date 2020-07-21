@@ -1,4 +1,5 @@
 ﻿using FoodDelivery.Database.Entities;
+using FoodDelivery.DTOs.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace FoodDelivery.Services.Interfaces
         Task<List<Product>> GetProductsAsync();
         Task<Product> GetProductByIdAsync(int productId);
         Task<bool> CreateProductAsync(Product product);
-        Task<List<Product>> GetProductsByNameAsync(string productName);
+        Task<GetProductsByNameResponse> GetProductsByNameAsync(string productName);
 
     }
 }
