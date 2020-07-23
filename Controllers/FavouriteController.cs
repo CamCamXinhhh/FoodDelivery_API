@@ -46,7 +46,21 @@ namespace FoodDelivery.Controllers
             return Ok();
         }
 
-       
+        [HttpGet(ApiRoutes.Favourite.GetListFavouriteProducts)]
+        public async Task<IActionResult> GetListFavouriteProducts([FromRoute]string email)
+        {
+            var response = await _favouriteService.GetFavouriteProductsOfUser(email);
+
+            if(response != null && response.Count > 0)
+            {
+                return Ok(response);
+            }
+
+            return NotFound();
+        }
+
+
+
 
     }
 }

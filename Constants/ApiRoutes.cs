@@ -48,7 +48,7 @@ namespace FoodDelivery.Constants
         {
             public const string Create = Base + "/favourites";
             public const string Delete = Base + "/favourites/{email}/{productId}";
-            
+            public const string GetListFavouriteProducts = Base + "/favourites/{email}";
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using FoodDelivery.Database;
 using FoodDelivery.Database.Entities;
+using FoodDelivery.DTOs.Responses;
 using FoodDelivery.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,34 @@ namespace FoodDelivery.Services.Implementations
             await _dataContext.Favourites.AddAsync(favourite);
 
             return await _dataContext.SaveChangesAsync() > 0;
+        }
+
+        public async Task<List<GetProductResponse>> GetFavouriteProductsOfUser(string email)
+        {
+            string userId = await GetUserIdByUserEmail(email);
+
+            var query = from f in _dataContext.Favourites
+                        join p in _dataContext.Products
+                        on f.ProductId equals p.ProductId
+                        where f.UserId == userId
+                        select new GetProductResponse
+                        {
+                            ProductId = p.ProductId,
+                            ProductName = p.ProductName,
+                            ShortDescription = p.ShortDescription,
+                            Detail = p.Detail,
+                            Calories = p.Calories,
+                            Price = p.Price,
+                            ProductImage = p.ProductImage,
+                            TimeToMake = p.TimeToMake,
+                            CategoryId = p.CategoryId,
+                            IsFavourite = true
+                        };
+
+            var result = await query.ToListAsync();
+
+            return result;
+            
         }
 
         public async Task<bool> IsProductFavourite(string email, int productId)
