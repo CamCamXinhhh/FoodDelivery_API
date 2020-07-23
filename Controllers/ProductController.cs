@@ -34,7 +34,7 @@ namespace FoodDelivery.Controllers
         }
 
         [HttpGet(ApiRoutes.Product.Get)]
-        public async Task<IActionResult> Get([FromRoute]int productId, [FromRoute]string email)
+        public async Task<IActionResult> Get([FromRoute]string email, [FromRoute]int productId)
         {
             var response = await _productService.GetProductByIdAsync(productId, email);
 
