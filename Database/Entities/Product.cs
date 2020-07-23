@@ -21,5 +21,9 @@ namespace FoodDelivery.Database.Entities
         public int CategoryId { get; set; }
         [JsonIgnore]
         public Category Category { get; set; }
+        [JsonIgnore]
+        public List<Favourite> Favourites { get; set; }
+        
+
     }
 }

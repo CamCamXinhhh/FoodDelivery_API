@@ -34,14 +34,14 @@ namespace FoodDelivery.Controllers
         }
 
         [HttpGet(ApiRoutes.Product.Get)]
-        public async Task<IActionResult> Get([FromRoute]int productId)
+        public async Task<IActionResult> Get([FromRoute]int productId, [FromRoute]string email)
         {
-            var product = await _productService.GetProductByIdAsync(productId);
+            var response = await _productService.GetProductByIdAsync(productId, email);
 
-            if (product == null)
+            if (response == null)
                 return NotFound();
 
-            return Ok(_mapper.Map<GetProductResponse>(product));
+            return Ok(response);
         }
 
         

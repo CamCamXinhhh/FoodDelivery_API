@@ -13,6 +13,7 @@ namespace FoodDelivery.Database
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Discount> Discounts { get; set; }
+        public DbSet<Favourite> Favourites { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
@@ -27,6 +28,18 @@ namespace FoodDelivery.Database
             builder.Entity<Product>()
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products);
+
+            //Favourite - Product
+            builder.Entity<Favourite>()
+                .HasOne(f => f.Product)
+                .WithMany(p => p.Favourites)
+                .HasForeignKey(f => f.ProductId);
+
+            //Favourite - User
+            builder.Entity<Favourite>()
+                .HasOne(f => f.User)
+                .WithMany(u => u.Favourites)
+                .HasForeignKey(f => f.UserId);
         }
     }
 }

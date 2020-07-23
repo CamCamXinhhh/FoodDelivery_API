@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace FoodDelivery.Database.Entities
@@ -12,6 +13,10 @@ namespace FoodDelivery.Database.Entities
         public bool Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string UserImage { get; set; }
+
+        //Relationship
+        [JsonIgnore]
+        public List<Favourite> Favourites { get; set; }
 
     }
 }

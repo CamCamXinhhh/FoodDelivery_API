@@ -130,6 +130,7 @@ namespace FoodDelivery
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IDiscountService, DiscountService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IFavouriteService, FavouriteService>();
             #endregion Services
         }
 

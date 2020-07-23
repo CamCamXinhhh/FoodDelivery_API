@@ -1,4 +1,5 @@
-﻿using FoodDelivery.Database;
+﻿using AutoMapper;
+using FoodDelivery.Database;
 using FoodDelivery.Database.Entities;
 using FoodDelivery.DTOs.Responses;
 using FoodDelivery.Services.Interfaces;
@@ -13,10 +14,15 @@ namespace FoodDelivery.Services.Implementations
     public class ProductService : IProductService
     {
         private readonly DataContext _dataContext;
+        private readonly IFavouriteService _favouriteService;
+        private readonly IMapper _mapper;
 
-        public ProductService(DataContext dataContext)
+
+        public ProductService(DataContext dataContext, IMapper mapper, IFavouriteService favouriteService)
         {
             _dataContext = dataContext;
+            _favouriteService = favouriteService;
+            _mapper = mapper;
         }
 
         public async Task<bool> CreateProductAsync(Product product)
@@ -28,11 +34,16 @@ namespace FoodDelivery.Services.Implementations
             return created > 0;
         }
 
-        public async Task<Product> GetProductByIdAsync(int productId)
+        public async Task<GetProductResponse> GetProductByIdAsync(int productId, string email)
         {
-            return await _dataContext.Products
+            Product product = await _dataContext.Products
                  .AsNoTracking()
                  .SingleOrDefaultAsync(p => p.ProductId == productId);
+
+            GetProductResponse response = _mapper.Map<GetProductResponse>(product);
+            response.IsFavourite = await _favouriteService.IsProductFavourite(email, productId);
+
+            return response;
         }
 
         public async Task<List<Product>> GetProductsAsync()

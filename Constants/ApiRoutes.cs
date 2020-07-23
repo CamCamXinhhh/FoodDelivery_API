@@ -21,7 +21,7 @@ namespace FoodDelivery.Constants
         public static class Product
         {
             public const string GetAll = Base + "/products";
-            public const string Get = Base + "/products/{productId}";
+            public const string Get = Base + "/products/{email}/{productId}";
             public const string Create = Base + "/products";
             public const string GetByName = Base + "/products/search/{productName}";
         }
@@ -42,6 +42,13 @@ namespace FoodDelivery.Constants
         public static class User
         {
             public const string Get = Base + "/users/{email}";
+        }
+
+        public static class Favourite
+        {
+            public const string Create = Base + "/favourites";
+            public const string Delete = Base + "/favourites/{email}/{productId}";
+            
         }
     }
 }

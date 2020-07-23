@@ -10,7 +10,7 @@ namespace FoodDelivery.Services.Interfaces
     public interface IProductService
     {
         Task<List<Product>> GetProductsAsync();
-        Task<Product> GetProductByIdAsync(int productId);
+        Task<GetProductResponse> GetProductByIdAsync(int productId, string email);
         Task<bool> CreateProductAsync(Product product);
         Task<GetProductsByNameResponse> GetProductsByNameAsync(string productName);
 
